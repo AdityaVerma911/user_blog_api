@@ -28,6 +28,11 @@ Rails.application.configure do
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
 
+  # Enable sessions for testing
+  config.session_store :cookie_store, key: '_interslice_rails_session'
+  config.middleware.use ActionDispatch::Cookies
+  config.middleware.use config.session_store, config.session_options
+
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
 
